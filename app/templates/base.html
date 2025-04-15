@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{% block title %}Password Vault{% endblock %}</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#10b981',
+          },
+        },
+      },
+    };
+  </script>
+
+  {% block head %}{% endblock %}
+</head>
+
+<body class="bg-gray-900 text-gray-300 font-inter min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-white">🔐 Password Vault</h1>
+      <nav class="space-x-4 text-sm font-medium">
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('auth_bp.logout') }}" class="hover:text-primary transition">Logout</a>
+          <a href="{{ url_for('main_bp.profile') }}" class="hover:text-primary transition">Profile</a>
+          <a href="{{ url_for('main_bp.generate_password') }}" class="hover:text-primary transition">Generate Password</a>
+        {% else %}
+          <a href="{{ url_for('auth_bp.login') }}" class="hover:text-primary transition">Login</a>
+          <a href="{{ url_for('auth_bp.register') }}" class="hover:text-primary transition">Register</a>
+        {% endif %}
+        <a href="{{ url_for('main_bp.index') }}" class="hover:text-primary transition">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Flash messages -->
+  <main class="flex-grow">
+    <div class="max-w-5xl mx-auto p-6">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="bg-green-600 text-white px-4 py-3 rounded mb-4 animate-fade-in">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ messages[0] }}</span>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-6 mt-12">
+    <p class="text-gray-400">&copy; 2025 Password Vault. All rights reserved.</p>
+    <p class="text-sm text-gray-500 mt-1">Created by Anthony Dinunzio • Version 1.0.0</p>
+  </footer>
+</body>
+
+</html>

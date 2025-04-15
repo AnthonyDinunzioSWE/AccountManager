@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center mt-10 animate-fade-in">
+  <h1 class="text-5xl font-extrabold mb-6 text-white drop-shadow">Welcome to <span class="text-primary">Password Vault</span></h1>
+  <p class="text-lg text-gray-400 mb-4">Your ultra-secure, privacy-first password manager.</p>
+  <p class="mb-6 text-md text-gray-400">Log in or register to begin safeguarding your credentials.</p>
+
+  <div class="flex justify-center space-x-4">
+    <a href="{{ url_for('auth_bp.login') }}" class="px-6 py-3 bg-primary text-white font-semibold rounded hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-lg">
+      Login
+    </a>
+    <a href="{{ url_for('auth_bp.register') }}" class="px-6 py-3 bg-secondary text-white font-semibold rounded hover:bg-emerald-600 transition transform hover:-translate-y-1 shadow-lg">
+      Register
+    </a>
+  </div>
+</div>
+
+<div class="mt-16">
+  <h2 class="text-3xl font-bold text-white mb-6 text-center">🔥 Features</h2>
+  <div class="grid md:grid-cols-2 gap-6 text-gray-400">
+    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2 text-primary">Secure Storage</h3>
+      <p>State-of-the-art encryption to keep your passwords safe and sound.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2 text-primary">Password Generation</h3>
+      <p>Generate strong, unique passwords with one click.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2 text-primary">Cross-Device Access</h3>
+      <p>Access your vault from mobile, tablet, or desktop.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="font-semibold text-lg mb-2 text-primary">Beautiful UI</h3>
+      <p>Clean, fast, responsive interface that you'll actually enjoy using.</p>
+    </div>
+  </div>
+</div>
+
+<div class="mt-16">
+  <h2 class="text-3xl font-bold text-white mb-4 text-center">📘 How to Use</h2>
+  <ol class="list-decimal list-inside text-gray-400 space-y-2 max-w-xl mx-auto">
+    <li>Create an account or log in.</li>
+    <li>Store your passwords with confidence.</li>
+    <li>Access them securely from any device, any time.</li>
+  </ol>
+</div>
+{% endblock %}
