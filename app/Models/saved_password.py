@@ -12,4 +12,6 @@ class SavedPassword(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     user_id = db.Column(db.UUID, db.ForeignKey('user.id'), nullable=False)
-    # Removed the conflicting 'user' property
+
+    # Add a property to track whether the password is unhashed
+    is_unhashed = False

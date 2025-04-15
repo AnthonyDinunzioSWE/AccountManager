@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>{% block title %}Password Vault{% endblock %}</title>
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -30,19 +32,33 @@
 <body class="bg-gray-900 text-gray-300 font-inter min-h-screen flex flex-col">
 
   <!-- Header -->
-  <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+<header class="bg-gray-800 shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-white">🔐 Password Vault</h1>
-      <nav class="space-x-4 text-sm font-medium">
+  
+      <!-- Hamburger Button -->
+      <button id="navToggle"
+        class="sm:hidden text-gray-300 focus:outline-none transition hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+  
+      <!-- Navigation Menu -->
+      <nav id="navMenu"
+        class="hidden sm:flex flex-col sm:flex-row absolute sm:static right-6 top-16 bg-gray-900 sm:bg-transparent rounded-lg sm:rounded-none w-48 sm:w-auto shadow-lg sm:shadow-none space-y-4 sm:space-y-0 sm:space-x-4 p-4 sm:p-0 text-sm font-medium transition-all duration-300 ease-in-out">
         {% if current_user.is_authenticated %}
-          <a href="{{ url_for('auth_bp.logout') }}" class="hover:text-primary transition">Logout</a>
+          <a href="{{ url_for('main_bp.index') }}" class="hover:text-primary transition">Home</a>
           <a href="{{ url_for('main_bp.profile') }}" class="hover:text-primary transition">Profile</a>
-          <a href="{{ url_for('main_bp.generate_password') }}" class="hover:text-primary transition">Generate Password</a>
+          <a href="{{ url_for('main_bp.generate_password') }}" class="hover:text-primary transition">Generate</a>
+          <a href="{{ url_for('main_bp.password_strength') }}" class="hover:text-primary transition">Strength</a>
+          <a href="{{ url_for('auth_bp.logout') }}" class="hover:text-primary transition">Logout</a>
         {% else %}
+          <a href="{{ url_for('main_bp.index') }}" class="hover:text-primary transition">Home</a>
           <a href="{{ url_for('auth_bp.login') }}" class="hover:text-primary transition">Login</a>
           <a href="{{ url_for('auth_bp.register') }}" class="hover:text-primary transition">Register</a>
         {% endif %}
-        <a href="{{ url_for('main_bp.index') }}" class="hover:text-primary transition">Home</a>
       </nav>
     </div>
   </header>
@@ -71,3 +87,14 @@
 </body>
 
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navToggle = document.getElementById("navToggle");
+      const navMenu = document.getElementById("navMenu");
+  
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("hidden");
+      });
+    });
+  </script>

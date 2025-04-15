@@ -1,8 +1,8 @@
-"""Initial Migration
+"""Updated SavedPassword Model with is_hashed flag
 
-Revision ID: aab5fcc7c0a6
+Revision ID: 8721d2408de3
 Revises: 
-Create Date: 2025-04-15 15:09:00.431681
+Create Date: 2025-04-15 16:01:02.786120
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'aab5fcc7c0a6'
+revision = '8721d2408de3'
 down_revision = None
 branch_labels = None
 depends_on = None
